@@ -110,13 +110,18 @@
         <form action="/addblog" method="POST" novalidate>
             <div class="mb-3">
                 <label for="imge" class="form-label">Image Url: </label>
-                <input type="text" class="form-control" name="url" id="imge" placeholder="Image Url">
+                <input type="text" class="form-control" name="url" id="imge" placeholder="write image url here....">
+            </div>
+            <div class="mb-3">
+                <label for="heading" class="form-label">Title: </label>
+                <input type="text" class="form-control" name="title" id="heading"
+                    placeholder="write your title here....">
             </div>
 
             <div class="mb-3">
                 <label for="des" class="form-label">Blog: </label>
                 <textarea class="form-control" name="blog_txt" id="des" rows="5"
-                    placeholder="Write Your Blog here.."></textarea>
+                    placeholder="write your blog here...."></textarea>
             </div>
             <button type="submit" class="btnn">Add</button>
         </form>
