@@ -34,7 +34,23 @@ const authentication = new mongoose.Schema({
   },
 });
 
+const blog = new mongoose.Schema({
+  url: {
+    type: String,
+    required: true,
+  },
+  blog_txt: {
+    type: String,
+    required: true,
+  },
+  data: {
+    type: String,
+    default: new Date().toDateString(),
+  },
+});
+
 const auth = mongoose.model("auth", authentication);
+const myblog = mongoose.model("myblog", blog);
 
 app.post("/signup", async (req, res) => {
   try {
@@ -110,6 +126,23 @@ app.post("/yoga", (req, res) => {
 
 app.post("/running", (req, res) => {
   res.render("running", { username });
+});
+app.get("/addblog", (req, res) => {
+  res.render("addBlog", { username });
+});
+
+app.post("/addblog", async (req, res) => {
+  try {
+    const blog_data = new myblog({
+      url: req.body.url.toUpperCase(),
+      blog_txt: req.body.blog_txt.toLowerCase(),
+    });
+    await blog_data.save();
+    console.log(blog_data);
+    res.render("addBlog", { username });
+  } catch (e) {
+    console.log("error");
+  }
 });
 
 app.listen(3000, () => {
