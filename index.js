@@ -34,8 +34,14 @@ const authentication = new mongoose.Schema({
   },
 });
 
+let arr = new Date().toDateString().split(" ");
+let date = arr[2] + " " + arr[1];
 const blog = new mongoose.Schema({
   url: {
+    type: String,
+    required: true,
+  },
+  title: {
     type: String,
     required: true,
   },
@@ -45,7 +51,7 @@ const blog = new mongoose.Schema({
   },
   data: {
     type: String,
-    default: new Date().toDateString(),
+    default: date,
   },
 });
 
@@ -135,10 +141,11 @@ app.post("/addblog", async (req, res) => {
   try {
     const blog_data = new myblog({
       url: req.body.url.toUpperCase(),
+      title: req.body.url.toLowerCase(),
       blog_txt: req.body.blog_txt.toLowerCase(),
     });
     await blog_data.save();
-    console.log(blog_data);
+    // console.log(blog_data);
     res.render("addBlog", { username });
   } catch (e) {
     console.log("error");
