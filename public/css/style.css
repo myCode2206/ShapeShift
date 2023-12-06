@@ -2033,6 +2033,11 @@ figure {
   opacity: 0;
 }
 
+#blog_para{
+  height: 200px;
+  overflow: hidden;
+}
+
 /*# sourceMappingURL=style.css.map */
 #hero-text {
   margin-top: 15%;
